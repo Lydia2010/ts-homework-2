@@ -1,8 +1,8 @@
 //The Game class
 class Game {
     //The constructor
-    constructor(public name: string, public rating: number) { }
-    
+    constructor(public name: string, public rating: number) {}
+
     //A function that returns the HTML object you need
     createListNode() :HTMLElement {
         //Create the nodes we'll need
@@ -10,15 +10,21 @@ class Game {
         let nameCell = document.createElement("td");
         let rateCell = document.createElement("td");
         let nameText = document.createTextNode(this.name);
-        let rateText = document.createTextNode(this.rating.toString());
-        
-        //Add the text
-        nameCell.appendChild(nameText);
-        rateCell.appendChild(rateText);
-        
+        let rateText = document.createTextNode(String(this.rating));
+
+
+        //nameCell.appendChild(nameText);
+        // rateCell.appendChild(rateText);
+
         //Add cells to row
-        newRow.appendChild(nameCell);
-        newRow.appendChild(rateCell);
+        //newRow.appendChild(nameCell);
+        //newRow.appendChild(rateCell);
+
+
+
+        document.getElementById("games").appendChild(newRow);
+        document.getElementById("games").appendChild(nameCell).appendChild(nameText);
+        document.getElementById("games").appendChild(rateCell).appendChild(rateText);
 
         //Return the row
         return newRow;
@@ -30,7 +36,7 @@ let newGame: Game;
 
 //The function that adds the game
 function addGame() :void {
-
-    //YOUR CODE GOES HERE
-
+    // @ts-ignore
+    newGame = new Game(document.getElementById("name").value,document.getElementById("rating").value);
+    newGame.createListNode();
 }
